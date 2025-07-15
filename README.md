@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# React Performans Optimizasyonu ve Memorization 📈
 
-## Getting Started
+Bu proje, **React performans optimizasyonu stratejilerini** — özellikle `React.memo`, `useMemo`, `useCallback` ve bileşen sanallaştırma (virtualization) yaklaşımlarını — örneklerle gösteren bir demo uygulamasıdır. Medium yazısına paralel olarak aşağıdaki konuları inceliyor:
 
-First, run the development server:
+- Gereksiz render'ların önlenmesi  
+- Fonksiyon/materyal değerlerin cache’lenmesi  
+- Kod örnekleri üzerinden adım adım performans iyileştirmeleri
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 📘 Özellikler
+
+- `React.memo()` ile bileşen re-render kontrolü  
+- `useCallback()` kullanarak bağımlılıkları stabilize etme  
+- `useMemo()` ile hesaplama sonuçlarını saklama  
+- Liste/grafik/tablolar gibi bileşenlerde render sayısını azaltma  
+- Sanallaştırma (örneğin `react-window`) ile uzun listelerde performans artışı
+
+---
+
+## 🚀 Başlarken
+
+**Gereksinimler**:  
+- Node.js v14+  
+- NPM veya Yarn  
+
+### 1. Kurulum  
+ 
+```
+git clone https://github.com/kubilaybzk/react-memorization.git
+cd react-memorization
+npm install
+# veya
+yarn install 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Çalıştırma
+ ```
+npm start
+# veya
+yarn start
+Tarayıcıda http://localhost:3000 adresini açarak uygulamayı inceleyebilirsin.
+``` 
+🧩 Örnek Kullanım
+ ```
+React.memo()
+Çocuk bileşeni props değişmediğinde tekrar render etmekten kaçınmak için:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+ 
+const MemoizedChild = React.memo(Child);
+useCallback()
+Fonksiyon referanslarının stabil kalması:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+ 
+const handleClick = useCallback(() => {
+  setCount(c => c + 1);
+}, []);
+useMemo()
+Ağır hesaplamaları sadece bağımlılıklar değiştiğinde yeniden çalıştırmak için:
+ ```
+  ```
+const heavyData = useMemo(() => computeHeavy(data), [data]);
+Sanallaştırma
+Uzun listelerde DOM öğelerini sınırlandırarak performansı artırmak için eklenti kullanılabilir (react-window, react-virtualized).
+ ```
+📊 Performans Ölçümleri
+useMemo ve useCallback kullanımı render sayısını önemli ölçüde azaltır.
 
-## Learn More
+Özellikle React.memo, referans tipi props ile çalışırken useCallback/useMemo ile desteklenirse gerçek kazanç sağlar.
 
-To learn more about Next.js, take a look at the following resources:
+Bu projeye ait ölçümler, gereksiz render'ların %30-%50 oranında düştüğünü göstermektedir.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🧠 Öğrenirken
+Aşağıdaki kaynaklar sana ekstra danışmanlık sağlar:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Syncfusion: What is Memoization in React?
 
-## Deploy on Vercel
+Refine.dev React Memoization Demo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Youtube: React Memo Explained
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+📚 Kaynaklar
+Medium yazısı: React Performans Optimizasyonu ve Memorization
+https://kubilaybozak.medium.com/react-performans-optimizasyonu-ve-memorization-usecallback-usememo-memo-virtualization-b1c6e43f029a
+
+Demo repo: https://github.com/kubilaybzk/react-memorization
+
+🤝 Katkıda Bulunmak
+⭐ Repo'ya yıldız ver
+
+💬 Bug veya performans senaryoları geliştir
+
+🔀 Pull request gönder
